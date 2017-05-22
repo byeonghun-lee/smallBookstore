@@ -13,19 +13,6 @@ const router = new VueRouter({
   routes
 });
 
-var config = {
-  apiKey: "AIzaSyBPFkMbEl6XuT_GDv9cmTOEp3EIXfEOb8E",
-  authDomain: "smallbookstore-ad9d6.firebaseapp.com",
-  databaseURL: "https://smallbookstore-ad9d6.firebaseio.com",
-  projectId: "smallbookstore-ad9d6",
-  storageBucket: "smallbookstore-ad9d6.appspot.com",
-  messagingSenderId: "680514796006"
-};
-
-firebase.initializeApp(config);
-
-window.firebase = firebase;
-
 new Vue({
   el: '#app',
   router,
