@@ -7,6 +7,7 @@
         <li>{{ store.shopname }}</li>
       </ul>
     </div> -->
+    <router-view name="footer"></router-view>
   </div>
 </template>
 
