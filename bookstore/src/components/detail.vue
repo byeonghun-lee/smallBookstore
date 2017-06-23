@@ -5,7 +5,7 @@
         <!-- this.bookstore[id -1]을 데이터에 담는 법. (숫자때문에 인식 안됨.)  -->
         <img :src="this.bookstore[id -1].thumbnail" :alt="this.bookstore[id -1].shopname + '사진'">
       </div>
-      <h2>{{ this.bookstore[id -1].shopname }}</h2>
+      <h2 class="shopname">{{ this.bookstore[id -1].shopname }}</h2>
       <p>{{ this.bookstore[id -1].address }}</p>
     </div>
     <div class="storyArea whiteBox">
@@ -19,7 +19,8 @@
       </ul>
     </div>
     <div class="instargramArea whiteBox">
-      <h3><span class="titleColor">instargram</span></h3>
+      <h3><span class="titleColor">책방</span>사진</h3>
+      <div class="bookStoreImage"></div>
     </div>
     <div class="mapArea whiteBox">
       <h3><span class="titleColor">책방</span>가는 길</h3>
@@ -39,6 +40,32 @@ export default {
       id: this.$route.params.id
       // bStore: this.bookstore
     }
+  },
+  mounted: function mounted() {
+    var shopName = document.querySelector(".shopname").innerText;
+    $.ajax({
+      url: "https://www.googleapis.com/customsearch/v1?key=AIzaSyBk202ezM-uvLl5SMhYkj0V2Be5XFUpTIE&cx=003292722399188843842:x-w1kmde7ps&q=" + shopName,
+      dataType: "json",
+
+      success: function(data){
+        console.log("성공", data);
+        console.log(data.items["0"].pagemap.cse_image["0"].src);
+        for (var i = 0; i < data.items.length; i++) {
+          var imgArea = document.querySelector(".bookStoreImage");
+          var storeImages = [
+            '<span class="storeThumbnail">',
+            '<img src=' + data.items[i].pagemap.cse_image["0"].src +'>',
+            '</span>'
+          ].join('');
+          imgArea.innerHTML += storeImages;
+          console.log(storeImages);
+        }
+      },
+      error: function(error){
+        console.error("실패 :", error);
+      },
+      type: 'GET'
+    });
   }
 }
 </script>
@@ -107,6 +134,15 @@ export default {
       width: 95%;
       margin: 0 auto;
     }
+  }
+}
+.storeThumbnail{
+  display: inline-block;
+  width: 75px;
+  height: 75px;
+  overflow: hidden;
+  img{
+    height: 100px;
   }
 }
 </style>
