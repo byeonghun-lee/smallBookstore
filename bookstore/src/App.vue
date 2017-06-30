@@ -2,11 +2,6 @@
   <div id="app">
     <router-view name="header"></router-view>
     <router-view></router-view>
-    <!-- <div>
-      <ul v-for="store in bookstore">
-        <li>{{ store.shopname }}</li>
-      </ul>
-    </div> -->
     <router-view name="footer"></router-view>
   </div>
 </template>

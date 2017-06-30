@@ -6,7 +6,7 @@
         <img :src="this.bookstore[id -1].thumbnail" :alt="this.bookstore[id -1].shopname + '사진'">
       </div>
       <h2 class="shopname">{{ this.bookstore[id -1].shopname }}</h2>
-      <p>{{ this.bookstore[id -1].address }}</p>
+      <p class="address">{{ this.bookstore[id -1].address }}</p>
     </div>
     <div class="storyArea whiteBox">
       <h3><span class="titleColor">책방</span> 이야기</h3>
@@ -24,6 +24,7 @@
     </div>
     <div class="mapArea whiteBox">
       <h3><span class="titleColor">책방</span>가는 길</h3>
+      <div id="map"></div>
     </div>
     <!-- <p>{{ id }}</p> -->
   </div>
@@ -44,22 +45,43 @@ export default {
   mounted: function mounted() {
     var shopName = document.querySelector(".shopname").innerText;
     $.ajax({
-      url: "https://www.googleapis.com/customsearch/v1?key=AIzaSyBk202ezM-uvLl5SMhYkj0V2Be5XFUpTIE&cx=003292722399188843842:x-w1kmde7ps&q=" + shopName,
+      url: "https://www.googleapis.com/customsearch/v1?key=AIzaSyBk202ezM-uvLl5SMhYkj0V2Be5XFUpTIE&cx=003292722399188843842:x-w1kmde7ps&searchType=image&q=" + shopName,
       dataType: "json",
 
       success: function(data){
         console.log("성공", data);
-        console.log(data.items["0"].pagemap.cse_image["0"].src);
         for (var i = 0; i < data.items.length; i++) {
           var imgArea = document.querySelector(".bookStoreImage");
           var storeImages = [
             '<span class="storeThumbnail">',
-            '<img src=' + data.items[i].pagemap.cse_image["0"].src +'>',
+            '<img src=' + data.items[i].image.thumbnailLink +'>',
             '</span>'
           ].join('');
           imgArea.innerHTML += storeImages;
-          console.log(storeImages);
         }
+      },
+      error: function(error){
+        console.error("실패 :", error);
+      },
+      type: 'GET'
+    });
+    var address = document.querySelector(".address").innerText;
+    $.ajax({
+      url: "https://maps.googleapis.com/maps/api/geocode/json?address="+ address +"&key=AIzaSyCNUd63qg-4Mu7WFpeMXkUyYnmCCkiyuGQ",
+      dataType: "json",
+
+      success: function(data){
+        console.log("주소 성공 :", data);
+        var uluru = {lat: data.results["0"].geometry.location.lat, lng: data.results["0"].geometry.location.lng};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 17,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+
       },
       error: function(error){
         console.error("실패 :", error);
@@ -70,6 +92,11 @@ export default {
 }
 </script>
 <style lang="scss">
+#map {
+ height: 200px;
+ width: 100%;
+}
+
 .titleColor{
   color: #ffba41;
 }
