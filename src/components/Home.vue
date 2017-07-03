@@ -5,7 +5,7 @@
       <div class="bookStorePhoto">
           <img :src="store.thumbnail" alt="책방 사진">
       </div>
-      <p class="bookStoreName">{{ store.shopname }}</p>
+      <p class="namePosition">{{ store.shopname }}</p>
       </router-link>
     </ul>
   </div>
@@ -66,13 +66,14 @@ ul{
     }
   }
 }
-.bookStoreName{
+.namePosition{
   color: white;
   position: absolute;
   top: 30%;
   left: 50%;
   font-size: 1.5rem;
   transform: translateX(-50%);
+  letter-spacing: 0.3rem;
 }
 
 </style>
