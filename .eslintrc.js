@@ -23,7 +23,7 @@ module.exports = {
     'generator-star-spacing': 0,
     'quotes': 0,
     "indent": 0,
-    'semi': ["error", "always", { "omitLastInOneLineBlock": true}],
+    'semi': 0,
     'padded-blocks': 0,
     'no-unused-vars': 0,
     'spaced-comment': 0,
