@@ -6,8 +6,6 @@ import VueFire from 'vuefire';
 import {routes} from './router/routes';
 import App from './App.vue';
 import firebase from 'firebase';
-// import faFontPath from '../src/assets/font-awesome/css/font-awesome.min.css';
-// import nanumbarungothic from '../src/assets/font/nanumbarungothic.css';
 
 Vue.use(VueRouter);
 Vue.use(VueFire);

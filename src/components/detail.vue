@@ -55,7 +55,7 @@
 <script>
 
 export default {
-  name: 'app',
+  // name: 'app',
   firebase: {
     bookstore: bookstoreRef
   },

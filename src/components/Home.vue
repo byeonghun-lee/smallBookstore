@@ -32,7 +32,7 @@ var bookstoreRef = db.ref('bookstore');
 window.bookstoreRef = bookstoreRef;
 
 export default {
-  name: 'app',
+  // name: 'app',
   firebase: {
     bookstore: bookstoreRef
   },

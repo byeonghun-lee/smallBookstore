@@ -21,7 +21,12 @@
           <img :src="region.photo" :alt="region.name + '사진'">
         </div>
         <h2 class="namePosition">{{ region.name }}</h2>
-        <router-link tag="button" :class="region.enName" class="regionButtonPosition" type="button" :to="`/`">view more <i class="fa fa-angle-double-right" aria-hidden="true"></i></router-link>
+        <router-link
+        tag="button"
+        :class="region.enName"
+        class="regionButtonPosition"
+        type="button"
+        :to="{ name: 'RegionDetail', params: { enName: region.enName }}">view more <i class="fa fa-angle-double-right" aria-hidden="true"></i></router-link>
       </div>
     </transition-group>
   </div>
