@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="region">
     <div class="box" id="cupcake" v-if="isLoading">
       <span class = "letter">L</span>
       <div class = "cupcakeCircle box">
@@ -34,6 +34,7 @@
 
 <script>
 export default {
+  name: 'region',
   data: function data() {
     return {
       regionList: [

@@ -1,11 +1,11 @@
-import Vue from 'vue'
-// import Hello from 'src/components/Hello'
-//
-// describe('Hello.vue', () => {
-//   it('should render correct contents', () => {
-//     const Constructor = Vue.extend(Hello)
-//     const vm = new Constructor().$mount()
-//     expect(vm.$el.querySelector('.Hello h1').textContent)
-//       .to.equal('Welcome to Your Vue.js App')
-//   })
-// })
+import Vue from 'vue';
+import Region from '@/components/region';
+
+describe('region.vue', () => {
+  it('should render correct contents', () => {
+    const Constructor = Vue.extend(Region)
+    const vm = new Constructor().$mount()
+    expect(vm.$el.querySelector('.region h2').textContent)
+      .to.equal('서울')
+  })
+})
