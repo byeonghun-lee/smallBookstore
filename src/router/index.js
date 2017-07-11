@@ -16,6 +16,6 @@ export default new Router({
     { path: '/', components: {header: Header, default: Home, footer: Footer}, name: 'home' },
     { path: '/storedetail/:id', components: {header: Header, default: Detail, footer: Footer}, name: 'detail' },
     { path: '/region', components: {header: regionalHeader, default: Region, footer: Footer}, name: 'region' },
-    { path: '/regin/:enName', components: {header: regionalHeader, default: RegionDetail, footer: Footer}, name: 'RegionDetail' }
+    { path: '/regin/:regionName', components: {header: regionalHeader, default: RegionDetail, footer: Footer}, name: 'RegionDetail' }
   ]
 })

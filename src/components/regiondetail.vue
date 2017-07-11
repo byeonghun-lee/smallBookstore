@@ -19,7 +19,22 @@ export default {
   },
   data: function data() {
     return {
-
+      regionName: this.$route.params.regionName
+    }
+  },
+  mounted: function mounted() {
+    var regionFilter;
+    regionFilter = this.bookstore;
+    for (var i = 0; i < regionFilter.length; i++) {
+      // console.log(regionFilter[i].address);
+      var regionName = this.$route.params.regionName;
+      console.log('regionName:', regionName);
+      var whereRegion = regionFilter[i].address.substring(0, 2);
+      console.log('whereRegion:', whereRegion);
+      if (whereRegion === regionName) {
+        return whereRegion;
+      }
+      console.log("whereRegion: ", whereRegion);
     }
   }
 }
