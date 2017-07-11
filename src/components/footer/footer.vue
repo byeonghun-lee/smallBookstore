@@ -45,10 +45,8 @@ data: function data () {
 .footerIcon{
   border: 2px solid white;
   border-radius: 100%;
-  @media screen and (max-width: 480px){
-    width: 50px;
-    height: 50px;
-  }
+  width: 50px;
+  height: 50px;
 }
 .modal{
   position: fixed;
@@ -69,6 +67,11 @@ data: function data () {
     width: 70%;
     padding: 10px;
     padding-top: 22px;
+  }
+  @media screen and (min-width: 480px){
+    width: 30%;
+    padding: 15px;
+    padding-top: 25px;
   }
     h4{
       margin-top: 15px;

@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <ul v-for="store in bookstore" class="bookStoreList">
-      <router-link :to="{name:'detail', params:{id: store.id}}" tag="li">
+  <div class="allBookList">
+    <ul v-for="store in bookstore">
+      <router-link :to="{name:'detail', params:{id: store.id}}" tag="li" class="storeList">
       <div class="bookStorePhoto">
           <img :src="store.thumbnail" alt="책방 사진">
       </div>
@@ -45,11 +45,28 @@ export default {
 </script>
 
 <style lang="scss">
+.allBookList{
+  @media screen and (min-width: 480px){
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 12%;
+  }
+}
 ul{
   list-style: none;
   padding: 0 10px;
   position: relative;
   margin: 0;
+  @media screen and (min-width: 480px){
+    width: 33.3333333%;
+    padding: 0;
+    :hover{
+      box-sizing: border-box;
+      background: black;
+      opacity: 0.7;
+      border: 2px solid #ffba41;
+    }
+  }
 }
 .bookStorePhoto{
   @media screen and (max-width: 480px){
@@ -62,6 +79,13 @@ ul{
       width: 100%;
       position: absolute;
       top: -15%;
+    }
+  }
+  @media screen and (min-width: 480px){
+    height: 300px;
+    overflow: hidden;
+    & img{
+      width: 150%;
     }
   }
 }
