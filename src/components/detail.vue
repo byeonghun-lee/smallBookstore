@@ -12,44 +12,45 @@
         <p class="address">{{ this.bookstore[id -1].address }}</p>
       </div>
     </transition>
+    <div class="whiteBoxControll">
+      <transition
+        enter-active-class="animated flipInX"
+        appear>
+        <div class="storyArea whiteBox">
+          <h3><span class="titleColor">책방</span> 이야기</h3>
+          <p>{{ this.bookstore[id -1].story }}</p>
+        </div>
+      </transition>
 
-    <transition
-    enter-active-class="animated flipInX"
-    appear>
-      <div class="storyArea whiteBox">
-        <h3><span class="titleColor">책방</span> 이야기</h3>
-        <p>{{ this.bookstore[id -1].story }}</p>
-      </div>
-    </transition>
+      <transition
+        enter-active-class="animated flipInX"
+        appear>
+        <div class="bestsellerArea whiteBox">
+          <h3><span class="titleColor">책방</span> 추천</h3>
+          <ul>
+            <li v-for="bestBook in this.bookstore[id -1].bestseller" class="bestBookList">{{ bestBook }}</li>
+          </ul>
+        </div>
+      </transition>
 
-    <transition
-    enter-active-class="animated flipInX"
-    appear>
-      <div class="bestsellerArea whiteBox">
-        <h3><span class="titleColor">책방</span> 추천</h3>
-        <ul>
-          <li v-for="bestBook in this.bookstore[id -1].bestseller" class="bestBookList">{{ bestBook }}</li>
-        </ul>
-      </div>
-    </transition>
+      <transition
+        enter-active-class="animated flipInX"
+        appear>
+        <div class="instargramArea whiteBox">
+          <h3><span class="titleColor">책방</span>사진</h3>
+          <div class="bookStoreImage"></div>
+        </div>
+      </transition>
 
-    <transition
-    enter-active-class="animated flipInX"
-    appear>
-      <div class="instargramArea whiteBox">
-        <h3><span class="titleColor">책방</span>사진</h3>
-        <div class="bookStoreImage"></div>
-      </div>
-    </transition>
-
-    <transition
-    enter-active-class="animated flipInX"
-    appear>
-      <div class="mapArea whiteBox">
-        <h3><span class="titleColor">책방</span>가는 길</h3>
-        <div id="map"></div>
-      </div>
-    </transition>
+      <transition
+        enter-active-class="animated flipInX"
+        appear>
+        <div class="mapArea whiteBox">
+          <h3><span class="titleColor">책방</span>가는 길</h3>
+          <div id="map"></div>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 <script>
@@ -62,7 +63,6 @@ export default {
   data() {
     return {
       id: this.$route.params.id
-      // bStore: this.bookstore
     };
   },
   mounted: function mounted() {
@@ -76,9 +76,9 @@ export default {
         for (var i = 0; i < data.items.length; i++) {
           var imgArea = document.querySelector(".bookStoreImage");
           var storeImages = [
-            '<span class="storeThumbnail">',
+            '<div class="storeThumbnail">',
             '<img src=' + data.items[i].image.thumbnailLink + '>',
-            '</span>'
+            '</div>'
           ].join('');
           imgArea.innerHTML += storeImages;
         }
@@ -117,10 +117,12 @@ export default {
 </script>
 <style lang="scss">
 #map {
- height: 200px;
- width: 100%;
+  width: 100%;
+  height: 200px;
+  @media screen and (min-width: 480px){
+    height: 350px;
+  }
 }
-
 .titleColor{
   color: #ffba41;
 }
@@ -164,6 +166,37 @@ export default {
       }
     }
   }
+  @media screen and (min-width: 480px){
+    width: 1110px;
+    margin: 25px auto;
+    padding: 30px 0;
+    h2{
+      font-size: 1.8rem;
+    }
+    p{
+      font-size: 0.8rem;
+      margin-top: 10px;
+    }
+    .imageSize{
+      width: 250px;
+      height: 250px;
+      border-radius: 100%;
+      margin-top: 15px;
+      overflow: hidden;
+      img{
+        width: 400px;
+      }
+    }
+  }
+}
+@media screen and (min-width: 480px){
+  .whiteBoxControll{
+    width: 1110px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 }
 .whiteBox{
   background-color: white;
@@ -186,14 +219,42 @@ export default {
       margin: 0 auto;
     }
   }
+  @media screen and (min-width: 480px){
+    box-sizing: border-box;
+    width: 540px;
+    padding: 30px;
+    margin-bottom: 25px;
+    h3{
+      font-weight: 100;
+    }
+    p{
+      width: 95%;
+      margin: 0 auto;
+    }
+  }
+}
+.bookStoreImage{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 .storeThumbnail{
-  display: inline-block;
-  width: 75px;
-  height: 75px;
   overflow: hidden;
-  img{
-    height: 100px;
+  margin: 0;
+  @media screen and (max-width: 480px){
+    width: 75px;
+    height: 75px;
+    img{
+      height: 100px;
+    }
+  }
+  @media screen and (min-width: 480px){
+    width: 110px;
+    height: 110px;
+    margin-bottom: 5px;
+    img{
+      height: 150px;
+    }
   }
 }
 

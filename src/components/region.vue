@@ -15,7 +15,8 @@
     <transition-group
     enter-active-class="animated tada"
     appear
-    v-else>
+    v-else
+    tag = "div">
       <div  class="regions" v-for="region in regionList" v-bind:key="region">
         <div class="regionImageSize">
           <img :src="region.photo" :alt="region.name + '사진'">
@@ -72,6 +73,11 @@ export default {
 .regions{
   position: relative;
 }
+@media screen and (min-width: 480px){
+  .region{
+    display: flex;
+  }
+}
 .regionImageSize{
   background-color: black;
   @media screen and (max-width: 480px){
@@ -84,6 +90,11 @@ export default {
       top: -15%;
       opacity: 0.4;
     }
+  }
+  @media screen and (min-width: 480px){
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
   }
 }
 .regionButtonPosition{

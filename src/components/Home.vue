@@ -1,6 +1,6 @@
 <template>
   <div class="allBookList">
-    <ul v-for="store in bookstore">
+    <ul v-for="store in bookstore" class="listWrap">
       <router-link :to="{name:'detail', params:{id: store.id}}" tag="li" class="storeList">
       <div class="bookStorePhoto">
           <img :src="store.thumbnail" alt="책방 사진">
@@ -52,19 +52,21 @@ export default {
     padding: 0 12%;
   }
 }
-ul{
+.listWrap{
   list-style: none;
   padding: 0 10px;
   position: relative;
   margin: 0;
   @media screen and (min-width: 480px){
+    background: black;
+    cursor: pointer;
     width: 33.3333333%;
     padding: 0;
-    :hover{
-      box-sizing: border-box;
-      background: black;
-      opacity: 0.7;
-      border: 2px solid #ffba41;
+    :hover > .bookStorePhoto{
+      opacity: 0.8;
+      & img{
+        animation: imgIncrease 0.5s ease-in-out forwards;
+      }
     }
   }
 }
@@ -98,5 +100,12 @@ ul{
   transform: translateX(-50%);
   letter-spacing: 0.3rem;
 }
-
+@keyframes imgIncrease {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(1.1, 1.1);
+  }
+}
 </style>
