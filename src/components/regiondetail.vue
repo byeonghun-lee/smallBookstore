@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2></h2>
-    <ul v-for="store in bookstore" class="bookStoreList">
+    <ul v-for="store in bookstore" class="listWrap">
       <router-link :to="{name:'detail', params:{id: store.id}}" tag="li">
       <div class="bookStorePhoto">
           <img :src="store.thumbnail" alt="책방 사진">

@@ -60,7 +60,7 @@ export default {
   @media screen and (min-width: 480px){
     background: black;
     cursor: pointer;
-    width: 33.3333333%;
+    width: 349px;
     padding: 0;
     :hover > .bookStorePhoto{
       opacity: 0.8;

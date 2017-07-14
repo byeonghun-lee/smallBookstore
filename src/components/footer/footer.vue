@@ -41,6 +41,9 @@ data: function data () {
     @media screen and (max-width: 480px){
       padding: 10px 0 5px 0;
     }
+    @media screen and (min-width: 480px){
+      padding: 30px 0 10px 0;
+    }
 }
 .footerIcon{
   border: 2px solid white;
