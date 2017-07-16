@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2></h2>
-    <ul v-for="store in bookstore" class="listWrap">
+    <ul v-for="store in regionFilter" class="listWrap">
       <router-link :to="{name:'detail', params:{id: store.id}}" tag="li">
       <div class="bookStorePhoto">
           <img :src="store.thumbnail" alt="책방 사진">
@@ -19,7 +19,8 @@ export default {
   },
   data: function data() {
     return {
-      regionName: this.$route.params.regionName
+      regionName: this.$route.params.regionName,
+      regionFilter: this.regionFilter
     }
   },
   mounted: function mounted() {
@@ -28,13 +29,14 @@ export default {
     for (var i = 0; i < regionFilter.length; i++) {
       // console.log(regionFilter[i].address);
       var regionName = this.$route.params.regionName;
-      console.log('regionName:', regionName);
+      // console.log('regionName:', regionName);
       var whereRegion = regionFilter[i].address.substring(0, 2);
-      console.log('whereRegion:', whereRegion);
+      // console.log('whereRegion:', whereRegion);
       if (whereRegion === regionName) {
-        return whereRegion;
+        console.log("서울지역: ", regionFilter[i]);
+        this.regionFilter = regionFilter[i];
+        console.log("this.regionFilter :", this.regionFilter);
       }
-      console.log("whereRegion: ", whereRegion);
     }
   }
 }
