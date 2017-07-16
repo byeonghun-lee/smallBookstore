@@ -22,12 +22,11 @@
           <img :src="region.photo" :alt="region.name + '사진'">
         </div>
         <h2 class="namePosition">{{ region.name }}</h2>
-        <router-link
-        tag="button"
+        <button
         :class="region.enName"
         class="regionButtonPosition"
         type="button"
-        :to="{ name: 'RegionDetail', params: { regionName: region.name }}">view more <i class="fa fa-angle-double-right" aria-hidden="true"></i></router-link>
+        @click="showRegionModal">view more <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
       </div>
     </transition-group>
   </div>
@@ -36,6 +35,9 @@
 <script>
 export default {
   name: 'region',
+  firebase: {
+    bookstore: bookstoreRef
+  },
   data: function data() {
     return {
       regionList: [
@@ -65,6 +67,28 @@ export default {
     setTimeout(function() {
       this.isLoading = false;
     }.bind(this), 3000);
+  },
+  methods: {
+    showRegionModal: function(e) {
+      var regionFilter, getClass, getClassName;
+      regionFilter = this.bookstore;
+      getClass = e.target.getAttribute("class");
+      getClassName = getClass.slice(21);
+      var createUl = document.querySelector(".region");
+      // v-show 나 v-if 로 바꾸자!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      createUl.insertAdjacentHTML('beforeend', '<div class="modal"><div class="shopNameList"><button type="button"><i class="fa fa-times fa-2x" aria-hidden="true"></i></button><ul class="addShopName"></ul></div></div>')
+      var selectUl = document.querySelector('.addShopName');
+      for (var i = 0; i < regionFilter.length; i++) {
+        var whereRegion = regionFilter[i].address.substring(0, 2);
+        if (getClassName === whereRegion) {
+          console.log("성고옹!");
+          console.log(regionFilter[i].shopname);
+          selectUl.insertAdjacentHTML('beforeend', '<li class = "' + regionFilter[i].id + '" >' + regionFilter[i].shopname + '</li>')
+        } else {
+          console.log("실패!");
+        }
+      }
+    }
   }
 };
 </script>
@@ -109,6 +133,14 @@ export default {
   padding: 5px 20px;
   font-weight: lighter;
   letter-spacing: 0.1rem;
+}
+.shopNameList{
+  position: fixed;
+  border-radius: 3px;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
 }
 
 // 로딩 애니메이션

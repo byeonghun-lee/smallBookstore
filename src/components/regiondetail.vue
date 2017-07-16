@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2></h2>
-    <ul v-for="store in regionFilter" class="listWrap">
+    <ul v-for="store in regionMode" class="listWrap">
       <router-link :to="{name:'detail', params:{id: store.id}}" tag="li">
       <div class="bookStorePhoto">
           <img :src="store.thumbnail" alt="책방 사진">
@@ -20,7 +20,7 @@ export default {
   data: function data() {
     return {
       regionName: this.$route.params.regionName,
-      regionFilter: this.regionFilter
+      regionMode: this.regionMode
     }
   },
   mounted: function mounted() {
@@ -34,8 +34,8 @@ export default {
       // console.log('whereRegion:', whereRegion);
       if (whereRegion === regionName) {
         console.log("서울지역: ", regionFilter[i]);
-        this.regionFilter = regionFilter[i];
-        console.log("this.regionFilter :", this.regionFilter);
+        this.regionMode = regionFilter[i];
+        console.log("this.regionFilter :", this.regionMode);
       }
     }
   }
