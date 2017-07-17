@@ -26,9 +26,13 @@
         :class="region.enName"
         class="regionButtonPosition"
         type="button"
-        @click="showRegionModal">view more <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+        @click="showRegionModal; regionModal = true;">view more <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
       </div>
     </transition-group>
+    <div class="modal" v-if="regionModal">
+      <button type="button" @click="regionModal = false"><i class="fa fa-times fa-2x" aria-hidden="true"></i></button>
+      <ul class="shopNameList"></ul>
+    </div>
   </div>
 </template>
 
@@ -59,7 +63,8 @@ export default {
         {name: '전라남도', enName: '전남', photo: 'http://cfile210.uf.daum.net/image/256763335327B178130BB4'},
         {name: '제주도', enName: '제주', photo: 'http://img.earthtory.com/img/nt_img/cover/73/73_1400668296.jpg'}
       ],
-      isLoading: false
+      isLoading: false,
+      regionModal: false
     };
   },
   mounted: function mounted() {
@@ -70,14 +75,29 @@ export default {
   },
   methods: {
     showRegionModal: function(e) {
+      // var regionFilter, getClass, getClassName;
+      // regionFilter = this.bookstore;
+      // getClass = e.target.getAttribute("class");
+      // getClassName = getClass.slice(21);
+      // var createUl = document.querySelector(".region");
+      // // v-show 나 v-if 로 바꾸자!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      // createUl.insertAdjacentHTML('beforeend', '<div class="modal"><div class="shopNameList"><button type="button"><i class="fa fa-times fa-2x" aria-hidden="true"></i></button><ul class="addShopName"></ul></div></div>')
+      // var selectUl = document.querySelector('.addShopName');
+      // for (var i = 0; i < regionFilter.length; i++) {
+      //   var whereRegion = regionFilter[i].address.substring(0, 2);
+      //   if (getClassName === whereRegion) {
+      //     console.log("성고옹!");
+      //     console.log(regionFilter[i].shopname);
+      //     selectUl.insertAdjacentHTML('beforeend', '<li class = "' + regionFilter[i].id + '" >' + regionFilter[i].shopname + '</li>')
+      //   } else {
+      //     console.log("실패!");
+      //   }
+      // }
       var regionFilter, getClass, getClassName;
       regionFilter = this.bookstore;
       getClass = e.target.getAttribute("class");
       getClassName = getClass.slice(21);
-      var createUl = document.querySelector(".region");
-      // v-show 나 v-if 로 바꾸자!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      createUl.insertAdjacentHTML('beforeend', '<div class="modal"><div class="shopNameList"><button type="button"><i class="fa fa-times fa-2x" aria-hidden="true"></i></button><ul class="addShopName"></ul></div></div>')
-      var selectUl = document.querySelector('.addShopName');
+      var selectUl = document.querySelector('.shopNameList');
       for (var i = 0; i < regionFilter.length; i++) {
         var whereRegion = regionFilter[i].address.substring(0, 2);
         if (getClassName === whereRegion) {
