@@ -26,10 +26,10 @@
         :class="region.enName"
         class="regionButtonPosition"
         type="button"
-        @click="showRegionModal; regionModal = true;">view more <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
+        @click="showRegionModal">view more <i class="fa fa-angle-double-right" aria-hidden="true"></i></button>
       </div>
     </transition-group>
-    <div class="modal" v-if="regionModal">
+    <div class="modal" v-show="regionModal">
       <button type="button" @click="regionModal = false"><i class="fa fa-times fa-2x" aria-hidden="true"></i></button>
       <ul class="shopNameList"></ul>
     </div>
@@ -75,29 +75,12 @@ export default {
   },
   methods: {
     showRegionModal: function(e) {
-      // var regionFilter, getClass, getClassName;
-      // regionFilter = this.bookstore;
-      // getClass = e.target.getAttribute("class");
-      // getClassName = getClass.slice(21);
-      // var createUl = document.querySelector(".region");
-      // // v-show 나 v-if 로 바꾸자!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      // createUl.insertAdjacentHTML('beforeend', '<div class="modal"><div class="shopNameList"><button type="button"><i class="fa fa-times fa-2x" aria-hidden="true"></i></button><ul class="addShopName"></ul></div></div>')
-      // var selectUl = document.querySelector('.addShopName');
-      // for (var i = 0; i < regionFilter.length; i++) {
-      //   var whereRegion = regionFilter[i].address.substring(0, 2);
-      //   if (getClassName === whereRegion) {
-      //     console.log("성고옹!");
-      //     console.log(regionFilter[i].shopname);
-      //     selectUl.insertAdjacentHTML('beforeend', '<li class = "' + regionFilter[i].id + '" >' + regionFilter[i].shopname + '</li>')
-      //   } else {
-      //     console.log("실패!");
-      //   }
-      // }
       var regionFilter, getClass, getClassName;
       regionFilter = this.bookstore;
       getClass = e.target.getAttribute("class");
       getClassName = getClass.slice(21);
       var selectUl = document.querySelector('.shopNameList');
+      selectUl.innerHTML = '';
       for (var i = 0; i < regionFilter.length; i++) {
         var whereRegion = regionFilter[i].address.substring(0, 2);
         if (getClassName === whereRegion) {
@@ -108,6 +91,7 @@ export default {
           console.log("실패!");
         }
       }
+      this.regionModal = true;
     }
   }
 };
