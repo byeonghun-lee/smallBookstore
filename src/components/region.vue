@@ -14,6 +14,7 @@
     </div>
     <transition-group
     enter-active-class="animated tada"
+    class="regionWrap"
     appear
     v-else
     tag = "div">
@@ -30,7 +31,7 @@
       </div>
     </transition-group>
     <div class="modal" v-show="regionModal">
-      <button type="button" @click="regionModal = false"><i class="fa fa-times fa-2x" aria-hidden="true"></i></button>
+      <button type="button" class="regionModalCloseBtn"  @click="regionModal = false"><i class="fa fa-times fa-2x" aria-hidden="true"></i></button>
       <ul class="shopNameList"></ul>
     </div>
   </div>
@@ -86,7 +87,7 @@ export default {
         if (getClassName === whereRegion) {
           console.log("성고옹!");
           console.log(regionFilter[i].shopname);
-          selectUl.insertAdjacentHTML('beforeend', '<li class = "' + regionFilter[i].id + '" >' + regionFilter[i].shopname + '</li>')
+          selectUl.insertAdjacentHTML('beforeend', '<li class = "' + regionFilter[i].id + '">' + regionFilter[i].shopname + '</li>')
         } else {
           console.log("실패!");
         }
@@ -98,13 +99,15 @@ export default {
 </script>
 
 <style lang="scss">
+.regionWrap{
+  @media screen and (min-width: 480px){
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
 .regions{
   position: relative;
-}
-@media screen and (min-width: 480px){
-  .region{
-    display: flex;
-  }
 }
 .regionImageSize{
   background-color: black;
@@ -115,14 +118,20 @@ export default {
     img{
       width: 120%;
       position: relative;
-      top: -15%;
+      top: -10%;
       opacity: 0.4;
     }
   }
   @media screen and (min-width: 480px){
     width: 400px;
     height: 400px;
+    border-radius: 50%;
     overflow: hidden;
+    margin: 10px;
+    img{
+      width: 200%;
+      top: -50%;
+    }
   }
 }
 .regionButtonPosition{
@@ -139,12 +148,34 @@ export default {
   letter-spacing: 0.1rem;
 }
 .shopNameList{
+  box-sizing: border-box;
+  list-style: none;
   position: fixed;
   border-radius: 3px;
   top: 40%;
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
+  @media screen and (min-width: 480px){
+    padding: 40px;
+    & li{
+      margin: 15px;
+      cursor: pointer;
+    }
+    & li:hover{
+      color: red;
+    }
+  }
+}
+.regionModalCloseBtn{
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 0;
+  border-radius: 10px;
+  color: white;
 }
 
 // 로딩 애니메이션
