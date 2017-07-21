@@ -100,7 +100,7 @@ export default {
         moveDetail[m].addEventListener('click', function(e) {
           console.log(e.target.getAttribute("class").split(' ')[1]);
           var moveClassName = e.target.getAttribute("class").split(' ')[1];
-          location.href = '/#/storedetail/' + moveClassName
+          location.href = '/smallBookstore/#/storedetail/' + moveClassName
         }, false);
       }
     }
