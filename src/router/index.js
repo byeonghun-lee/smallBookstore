@@ -12,6 +12,7 @@ import Footer from '@/components/footer/footer';
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     { path: '/', components: {header: Header, default: Home, footer: Footer}, name: 'home' },
     { path: '/storedetail/:id', components: {header: Header, default: Detail, footer: Footer}, name: 'detail' },

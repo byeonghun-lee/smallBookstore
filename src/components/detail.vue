@@ -236,11 +236,11 @@ export default {
 .bookStoreImage{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 .storeThumbnail{
   overflow: hidden;
-  margin: 0;
+  margin: 5px;
   @media screen and (max-width: 480px){
     width: 75px;
     height: 75px;

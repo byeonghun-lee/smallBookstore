@@ -18,7 +18,7 @@
     appear
     v-else
     tag = "div">
-      <div  class="regions" v-for="region in regionList" v-bind:key="region">
+      <div class="regions" v-for="region in regionList" v-bind:key="region">
         <div class="regionImageSize">
           <img :src="region.photo" :alt="region.name + '사진'">
         </div>
@@ -87,12 +87,22 @@ export default {
         if (getClassName === whereRegion) {
           console.log("성고옹!");
           console.log(regionFilter[i].shopname);
-          selectUl.insertAdjacentHTML('beforeend', '<li class = "' + regionFilter[i].id + '">' + regionFilter[i].shopname + '</li>')
+          selectUl.insertAdjacentHTML('beforeend', '<li class = "regionFilter ' + regionFilter[i].id + '">' + regionFilter[i].shopname + '</li>')
         } else {
           console.log("실패!");
         }
       }
       this.regionModal = true;
+// 지역 별로 나누는 페이지에서 디테일로 연결  
+// 코드 바꿀 필요 있음. href로 페이지 이동 말고 다른 것으로
+      var moveDetail = document.querySelectorAll(".regionFilter");
+      for (var m = 0; m < moveDetail.length; m++) {
+        moveDetail[m].addEventListener('click', function(e) {
+          console.log(e.target.getAttribute("class").split(' ')[1]);
+          var moveClassName = e.target.getAttribute("class").split(' ')[1];
+          location.href = '/storedetail/' + moveClassName
+        }, false);
+      }
     }
   }
 };
@@ -156,6 +166,17 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
+  @media screen and (max-width: 480px){
+    padding: 20px;
+    & li{
+      text-align: center;
+      padding: 5px;
+      margin: 3px;
+      background-color: rgb(29, 75, 164);
+      border-radius: 5px;
+      color: white;
+    }
+  }
   @media screen and (min-width: 480px){
     padding: 40px;
     & li{
