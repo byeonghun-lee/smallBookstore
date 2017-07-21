@@ -77,7 +77,7 @@ export default {
           var imgArea = document.querySelector(".bookStoreImage");
           var storeImages = [
             '<div class="storeThumbnail">',
-            '<img src=' + data.items[i].image.thumbnailLink + '>',
+            '<a href="' + data.items[i].link + '"><img src=' + data.items[i].link + '></a>',
             '</div>'
           ].join('');
           imgArea.innerHTML += storeImages;
