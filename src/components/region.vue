@@ -93,14 +93,14 @@ export default {
         }
       }
       this.regionModal = true;
-// 지역 별로 나누는 페이지에서 디테일로 연결  
+// 지역 별로 나누는 페이지에서 디테일로 연결
 // 코드 바꿀 필요 있음. href로 페이지 이동 말고 다른 것으로
       var moveDetail = document.querySelectorAll(".regionFilter");
       for (var m = 0; m < moveDetail.length; m++) {
         moveDetail[m].addEventListener('click', function(e) {
           console.log(e.target.getAttribute("class").split(' ')[1]);
           var moveClassName = e.target.getAttribute("class").split(' ')[1];
-          location.href = '/storedetail/' + moveClassName
+          location.href = '/#/storedetail/' + moveClassName
         }, false);
       }
     }

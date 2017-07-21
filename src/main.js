@@ -9,11 +9,6 @@ import firebase from 'firebase';
 Vue.use(VueFire);
 Vue.config.productionTip = false;
 
-// const router = new VueRouter({
-//   mode: 'history',
-//   routes
-// });
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
