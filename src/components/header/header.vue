@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <h1 class="mainTitle">작은 책방</h1>
+    <router-link :to="{ name: 'home' }" tag="h1" class="mainTitle">작은 책방</router-link>
     <router-link :to="{name:'region'}" tag="a">
       <img class="mapIcon" src="../../assets/mapIcon.png" alt="위치로 책방 찾기">
     </router-link>
@@ -19,6 +19,7 @@ export default {
 .mainTitle{
   color: white;
   margin: 0;
+  cursor: pointer;
   @media screen and (max-width: 480px){
     font-weight: 700;
     font-size: 1.6rem;

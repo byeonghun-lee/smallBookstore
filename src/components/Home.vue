@@ -50,6 +50,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     padding: 0 12%;
+    // justify-content: center;
   }
 }
 .listWrap{
